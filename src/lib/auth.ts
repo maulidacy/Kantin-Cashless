@@ -22,8 +22,8 @@ export async function requireStaff(): Promise<Staff> {
     .maybeSingle()
 
   if (error || !prof) throw Object.assign(new Error('Profile missing'), { status: 403 })
-  const role = (prof.role || 'customer') as Staff['role'] | 'customer'
+  const role = prof.role || 'customer'
   if (!['cashier','admin'].includes(role)) throw Object.assign(new Error('Forbidden'), { status: 403 })
 
-  return { id: prof.id, email: prof.email, role }
+  return { id: prof.id, email: prof.email, role: role as Staff['role'] }
 }
