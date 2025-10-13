@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createSupabaseBrowser } from '@/src/lib/supabaseClient'
 
 type CheckResp = { registered: boolean; role?: 'admin' | 'cashier' }
@@ -43,6 +43,17 @@ export default function StaffAuthPage() {
     if (error) alert(error.message)
     else setSent(true)
   }
+
+  // Handle query params for messages
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const msg = urlParams.get('msg')
+    if (msg === 'profile_not_found') {
+      alert('Akun Anda belum memiliki profil. Silakan hubungi admin untuk menetapkan role.')
+    } else if (msg === 'unauthorized') {
+      alert('Role Anda tidak memiliki akses ke halaman admin.')
+    }
+  }, [])
 
   return (
     <main className="flex min-h-[80vh] flex-col items-center justify-center p-4">
