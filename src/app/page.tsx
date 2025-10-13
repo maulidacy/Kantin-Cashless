@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -23,6 +24,16 @@ export default function Home() {
           <li>Checkout: isi data & pilih metode bayar</li>
           <li>Terima email struk & pantau status</li>
         </ol>
+        <div className="mt-6">
+          <Image
+            src="/placeholder.png"
+            alt="QR Code Example"
+            width={200}
+            height={200}
+            priority
+            className="rounded-lg shadow-sm"
+          />
+        </div>
       </section>
     </main>
   )
