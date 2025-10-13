@@ -1,22 +1,26 @@
 import './globals.css'
+import { ReactQueryClientProvider } from './providers'
 import Link from 'next/link'
+
+export const metadata = {
+  title: 'Kantin QR',
+  description: 'Pemesanan cepat lintas kios',
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
-      <body>
-        <header className="border-b bg-white/60 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-          <div className="container flex items-center gap-4 h-16">
-            <Link href="/" className="font-bold text-primary text-lg">KantinSekolah</Link>
-            <nav className="ml-auto flex gap-4 text-sm">
-              <Link href="/parent" className="hover:underline">Orang Tua</Link>
-              <Link href="/student" className="hover:underline">Siswa</Link>
-              <Link href="/merchant" className="hover:underline">Kantin</Link>
-              <Link href="/login" className="hover:underline">Login</Link>
+    <html lang="id" suppressHydrationWarning>
+      <body className="min-h-screen bg-background text-foreground antialiased">
+        <header className="sticky top-0 z-20 bg-white/70 backdrop-blur border-b">
+          <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+            <Link href="/" className="font-semibold">Kantin QR</Link>
+            <nav className="flex gap-4 text-sm">
+              <Link href="/order" className="hover:underline">Mulai Pesan</Link>
+              <Link href="/admin" className="hover:underline">Admin</Link>
             </nav>
           </div>
         </header>
-        <main className="container py-6">{children}</main>
+        <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
       </body>
     </html>
   )
